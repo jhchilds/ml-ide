@@ -26,7 +26,7 @@ class Cloner:
         f = open("pw.txt", "r")
         username = f.readline().rstrip()
         pw = f.readline().rstrip()
-       
+
         g = Github(username, pw)
         print(g.get_rate_limit())
 
