@@ -23,7 +23,7 @@ class Cloner:
     # public repo metadata in groupings of 100
     def accumulate_repos(self):
         langs = ['vb.net']
-        g = Github("jhchilds", "Ad141700!@#$%")
+        g = Github()
         print(g.get_rate_limit())
 
         for lang in langs:
