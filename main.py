@@ -5,10 +5,7 @@ import csv
 def main():
 
     cloner = Cloner()
-    # cloner.accumulate_repos()
     cloner.clone_repos()
-
-
 
 
 main()
