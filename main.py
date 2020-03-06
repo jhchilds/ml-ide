@@ -4,9 +4,9 @@ from github.Rate import Rate
 import csv
 def main():
 
-    cloner = Cloner(1000)
-    cloner.accumulate_repos()
-    # cloner.clone_repos()
+    cloner = Cloner()
+    # cloner.accumulate_repos()
+    cloner.clone_repos()
 
 
 

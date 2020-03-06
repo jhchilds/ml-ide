@@ -5,7 +5,7 @@ from github import Github
 
 # Github Repo Cloner
 class Cloner:
-    def __init__(self, num_repos):
+    def __init__(self):
         self.langs = ['python', 'c++', 'c', 'javascript', 'java', 'php', 'swift', 'ruby', 'c#', 'r', 'matlab', 'vb.net']
 
 
@@ -22,11 +22,11 @@ class Cloner:
     # Github has an endpoint URL that returns
     # public repo metadata in groupings of 100
     def accumulate_repos(self):
-        test = ['vb.net']
+        langs = ['vb.net']
         g = Github("jhchilds", "Ad141700!@#$%")
         print(g.get_rate_limit())
 
-        for lang in test:
+        for lang in langs:
             repositories = g.search_repositories(query='language:' + lang)
             with open('repos/'+ lang + '_repos.csv', 'w', newline='') as csvfile:
                 w = csv.writer(csvfile, delimiter=',')
