@@ -22,8 +22,12 @@ class Cloner:
     # Github has an endpoint URL that returns
     # public repo metadata in groupings of 100
     def accumulate_repos(self):
-        langs = ['vb.net']
-        g = Github()
+        langs = ['haskell']
+        f = open("pw.txt", "r")
+        username = f.readline().rstrip()
+        pw = f.readline().rstrip()
+       
+        g = Github(username, pw)
         print(g.get_rate_limit())
 
         for lang in langs:
