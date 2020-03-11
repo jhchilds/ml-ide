@@ -3,11 +3,11 @@ import os
 import csv
 from github import Github
 
+
 # Github Repo Cloner
 class Cloner:
     def __init__(self):
         self.langs = ['python', 'c++', 'c', 'javascript', 'java', 'php', 'swift', 'ruby', 'c#', 'r', 'matlab', 'vb.net']
-
 
     def clone_repos(self):
         print("Cloning repos...")
@@ -17,7 +17,7 @@ class Cloner:
                 r = csv.reader(csvfile, delimiter=',')
                 for row in r:
                     row_f = ', '.join(row)
-                    os.system("git clone https://github.com/" +  row_f)
+                    os.system(f"git clone https://github.com/{row_f} repos-cloned/{row_f.split('/')[-1]}")
 
     # Github has an endpoint URL that returns
     # public repo metadata in groupings of 100
