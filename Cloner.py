@@ -17,7 +17,7 @@ class Cloner:
                 r = csv.reader(csvfile, delimiter=',')
                 for row in r:
                     row_f = ', '.join(row)
-                    os.system("git clone git@github.com:" +  row_f)
+                    os.system("git clone https://github.com/" +  row_f)
 
     # Github has an endpoint URL that returns
     # public repo metadata in groupings of 100
