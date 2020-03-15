@@ -10,4 +10,4 @@ vectorized_X = vectorizer.fit_transform(corpus)
 print(vectorizer.get_feature_names())
 print(vectorized_X.toarray())
 
-np.save("vectorized.np", vectorized_X.toarray())
+np.save("vectorized", vectorized_X.toarray())
