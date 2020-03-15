@@ -1,4 +1,4 @@
-from data_collection.Cloner import Cloner
+from Cloner import Cloner
 
 def main():
 
