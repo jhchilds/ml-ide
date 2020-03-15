@@ -13,11 +13,11 @@ class Cloner:
         print("Cloning repos...")
         print("...")
         for lang in self.langs:
-            with open('repos/' + lang + '_repos.csv', newline='') as csvfile:
+            with open('../repos/' + lang + '_repos.csv', newline='') as csvfile:
                 r = csv.reader(csvfile, delimiter=',')
                 for row in r:
                     row_f = ', '.join(row)
-                    os.system(f"git clone https://github.com/{row_f} repos-cloned/{row_f.split('/')[-1]}")
+                    os.system(f"git clone https://github.com/{row_f} ../repos-cloned/{row_f.split('/')[-1]}")
 
     # Github has an endpoint URL that returns
     # public repo metadata in groupings of 100
@@ -32,7 +32,7 @@ class Cloner:
 
         for lang in langs:
             repositories = g.search_repositories(query='language:' + lang)
-            with open('repos/'+ lang + '_repos.csv', 'w', newline='') as csvfile:
+            with open('../repos/'+ lang + '_repos.csv', 'w', newline='') as csvfile:
                 w = csv.writer(csvfile, delimiter=',')
                 for repo in repositories:
                     w.writerow([repo.full_name])

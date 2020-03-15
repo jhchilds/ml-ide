@@ -1,7 +1,7 @@
 .idea/
 __pycache__/
 venv/
-pw.txt
+data_collection/pw.txt
 repos-cloned
 .DS_Store
 vectorized.np.npy
