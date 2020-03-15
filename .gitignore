@@ -4,3 +4,5 @@ venv/
 pw.txt
 repos-cloned
 .DS_Store
+vectorized.np.npy
+data.json
