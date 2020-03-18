@@ -6,3 +6,4 @@ repos-cloned
 .DS_Store
 vectorized.npy
 data.json
+*.npy
