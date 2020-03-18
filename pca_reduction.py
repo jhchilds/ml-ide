@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn import preprocessing
 from sklearn.decomposition import PCA
 
 X = np.load("vectorized_X.npy")
