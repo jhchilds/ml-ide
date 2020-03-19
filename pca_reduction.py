@@ -1,11 +1,16 @@
 import numpy as np
-from sklearn.decomposition import PCA
+import plotly.express as px
+from sklearn.decomposition import KernelPCA
 
-X = np.load("vectorized_X.npy")
-y = np.load("vectorized_y.npy")
+data = np.load("vectorized.npy")
 
-pca = PCA(n_components=3)
+X = data[:, :-1]
+y = data[:, -1]
+
+pca = KernelPCA(n_components=2, n_jobs=-1)
 X_new = pca.fit_transform(X)
 
-print(pca.explained_variance_ratio_)
 print(X_new)
+
+# fig = px.scatter(X_new[:,0], X_new[:,1])
+# fig.show()
