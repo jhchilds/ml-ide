@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_codemirror import CodeMirror
+from flask_socketio import SocketIO
 
 from flask_wtf import FlaskForm
 from flask_codemirror.fields import CodeMirrorField
@@ -24,6 +25,8 @@ CODEMIRROR_ADDONS = (
 app = Flask(__name__)
 app.config.from_object(__name__)
 codemirror = CodeMirror(app)
+socketio = SocketIO(app, cors_allowed_origins='*')
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -32,5 +35,4 @@ def index():
         text = form.source_code.data
     return render_template('index.html', form=form)
 
-if __name__ == "__main__":
-  codemirror.init_app(app)
+socketio.run(app, host="0.0.0.0", port=1142, log_output=True)
