@@ -3,3 +3,5 @@ sklearn
 numpy
 flask-codemirror
 Flask-WTF
+flask-socketio
+eventlet
