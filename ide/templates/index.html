@@ -6,7 +6,13 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
+
+
+    <form id="codeForm" method="POST">
           {{ form.source_code }}
     </form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+<script src="../static/socket-controller.js" ></script>
+
 {% endblock %}
