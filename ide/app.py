@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_codemirror import CodeMirror
 from flask_socketio import SocketIO
 
@@ -30,9 +30,15 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    form = MyForm()
-    if form.validate_on_submit():
-        text = form.source_code.data
-    return render_template('index.html', form=form)
+    code_form = MyForm()
+    if code_form.validate_on_submit():
+        text = code_form.source_code.data
+    return render_template('index.html', form=code_form)
 
-socketio.run(app, host="0.0.0.0", port=1142, log_output=True)
+
+@socketio.on('code_text')
+def handle_code_text(message):
+    socketio.emit('code_text', message, broadcast=True)
+
+
+socketio.run(app, host="0.0.0.0", log_output=True)
