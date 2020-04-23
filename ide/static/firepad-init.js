@@ -1,5 +1,5 @@
  function init() {
-      //// Initialize Firebase.
+
      const config = {
          apiKey: "AIzaSyA3PEmLbal6m6jFx9OHsmiSDQ7aHi8y6ZE",
          authDomain: "ml-ide.firebaseapp.com",
@@ -12,22 +12,21 @@
     };
       firebase.initializeApp(config);
 
-      //// Get Firebase Database reference.
+
       var firepadRef = getExampleRef();
 
-      //// Create CodeMirror (with line numbers and the JavaScript mode).
+
       var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
         lineNumbers: true,
         mode: 'javascript'
       });
 
-      //// Create Firepad.
+
       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
         defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
       });
     }
 
-    // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
       var ref = firebase.database().ref();
       var hash = window.location.hash.replace(/#/g, '');
