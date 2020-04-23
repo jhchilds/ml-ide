@@ -30,10 +30,7 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    code_form = MyForm()
-    if code_form.validate_on_submit():
-        text = code_form.source_code.data
-    return render_template('index.html', form=code_form)
+    return render_template('index.html')
 
 
 @socketio.on('code_text')
