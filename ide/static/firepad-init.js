@@ -5,7 +5,7 @@ function init() {
     const config = {
         apiKey:            credentials.apiKey,
         authDomain:        credentials.authDomain,
-        databaseURL:       credentials.databaseURL,
+        databaseURL:       "https://ml-ide.firebaseio.com",
         projectId:         credentials.projectId,
         storageBucket:     credentials.storageBucket,
         messagingSenderId: credentials.messagingSenderId,
