@@ -7,3 +7,4 @@ repos-cloned
 vectorized.npy
 data.json
 *.npy
+credentials.json
