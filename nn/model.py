@@ -6,9 +6,10 @@ from tensorflow.keras.utils import to_categorical
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
+import pickle
 
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # https://github.com/tensorflow/tensorflow/issues/24828
 config = tf.compat.v1.ConfigProto()
@@ -23,6 +24,8 @@ print(y)
 
 label_encoder = preprocessing.LabelEncoder()
 label_encoder.fit(y)
+
+pickle.dump(label_encoder, open("label_encoder.pickle", "wb"))
 
 y_numeric = label_encoder.transform(y)
 
@@ -45,3 +48,4 @@ model.compile(optimizer='sgd',
 print(y_train_1hot)
 
 model.fit(x_train, y_train_1hot, epochs=50, batch_size=16, verbose=True, validation_data=(x_val, y_val_1hot))
+model.save("model")

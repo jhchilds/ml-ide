@@ -8,3 +8,5 @@ vectorized.npy
 data.json
 *.npy
 credentials.json
+nn/model
+*.pickle
