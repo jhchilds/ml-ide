@@ -10,8 +10,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/test/', methods=['GET','POST'])
-def test():
+@app.route('/classify/', methods=['GET','POST'])
+def classify():
     if request.method == "POST":
         print(request.form["code"])
     return 'return'

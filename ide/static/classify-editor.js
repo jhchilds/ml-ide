@@ -14,7 +14,7 @@ $input.on('keyup', function () {
 function sendCode() {
     $.ajax({
         type: "POST",
-        url: "http://localhost:5000/test/",
+        url: "http://localhost:5000/classify/",
         dataType: "json",
         data: {
             code: codeMirror.getValue()
