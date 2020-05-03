@@ -1,12 +1,12 @@
 var timeBetweenKeystrokes = 500;
 var timer;
-var $input = $('#firepad-container');
+var $editor = $('#firepad-container');
 
-$input.on('keydown', function () {
+$editor.on('keydown', function () {
     clearTimeout(timer);
 });
 
-$input.on('keyup', function () {
+$editor.on('keyup', function () {
     clearTimeout(timer);
     timer = setTimeout(sendCode, timeBetweenKeystrokes);
 });
@@ -14,10 +14,13 @@ $input.on('keyup', function () {
 function sendCode() {
     $.ajax({
         type: "POST",
-        url: "http://localhost:5000/classify/",
+        url: "/classify",
         dataType: "json",
         data: {
             code: codeMirror.getValue()
+        },
+        success: function (response){
+            console.log(response)
         }
     });
 }

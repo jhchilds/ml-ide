@@ -10,10 +10,9 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/classify/', methods=['GET','POST'])
+@app.route('/classify/', methods=['POST'])
 def classify():
-    if request.method == "POST":
-        print(request.form["code"])
+    print(request.form["code"])
     return 'return'
 
 socketio.run(app, host="0.0.0.0", log_output=True)
