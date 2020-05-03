@@ -1,3 +1,9 @@
+
+var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
+        lineNumbers: true,
+        mode: 'javascript'
+    });
+
 function init() {
 
     var credentials = fetch('../static/credentials.json')
@@ -16,10 +22,7 @@ function init() {
     firebase.initializeApp(config);
 
     var firepadRef = getExampleRef();
-    var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
-        lineNumbers: true,
-        mode: 'javascript'
-    });
+
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
         defaultText: 'Welcome to ML-IDE'
     });
