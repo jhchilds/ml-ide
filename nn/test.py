@@ -6,10 +6,6 @@ vectorizer = pickle.load(open("attempt2/vectorizer.pickle", "rb"))
 
 test = \
 """
-case e of
-  -> ValueE arg
-  -> ValueE (interp e)
-  _ -> Nothing
 """
 
 X = vectorizer.transform([test])

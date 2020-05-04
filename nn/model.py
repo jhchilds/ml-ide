@@ -86,6 +86,12 @@ model = models.Sequential([
     layers.Dense(4096),
     layers.Activation('relu'),
     layers.Dense(4096),
+    layers.Activation('relu'),
+    layers.Dense(4096),
+    layers.Activation('relu'),
+    layers.Dense(4096),
+    layers.Activation('relu'),
+    layers.Dense(4096),
     #layers.Dropout(0.6),
     layers.Flatten(),
     layers.Dense(6),
@@ -103,4 +109,6 @@ predicted_classes = []
 for prediction in predict:
     predicted_classes.append(np.argmax(prediction))
 
-print(classification_report(y_test, predicted_classes))
+report = classification_report(y_test, predicted_classes)
+print(report)
+open("attempt2/classification_report.txt", "w").write(report)
