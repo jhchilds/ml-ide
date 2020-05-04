@@ -1,7 +1,10 @@
 import pickle
 import numpy as np
+from tensorflow.keras import layers, optimizers, models
 
-y = pickle.load(open("attempt2/vectorized_y.pickle", "rb"))
+ATTEMPT = "attempt3"
+
+y = pickle.load(open(f"{ATTEMPT}/vectorized_y.pickle", "rb"))
 
 y = np.asarray(y)
 # y = y.reshape((len(y), 1))
@@ -14,3 +17,8 @@ for label in y:
 print(target_counts)
 
 print(y.shape)
+
+
+model = models.load_model(f"{ATTEMPT}/model.bak")
+print(model)
+

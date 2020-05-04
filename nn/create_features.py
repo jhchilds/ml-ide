@@ -10,6 +10,8 @@ from scipy import sparse
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
 
+ATTEMPT = "attempt3"
+
 
 def get_labeled_source_of_type(type_):
     print(type_)
@@ -31,7 +33,7 @@ file_paths += get_labeled_source_of_type("swift")
 file_paths += get_labeled_source_of_type("hs")
 random.shuffle(file_paths)
 
-chunk_length = 0
+chunk_length = 200
 
 corpus = []
 target = []
@@ -40,7 +42,7 @@ sample_index = 200
 for file_tuple in file_paths:
     if file_tuple[1] not in target_counts:
         target_counts[file_tuple[1]] = 0
-    if target_counts[file_tuple[1]] >= 1000000:
+    if target_counts[file_tuple[1]] >= 100000:
         continue
     try:
         text = open(file_tuple[0]).read()
@@ -84,10 +86,10 @@ print(vectorized_X.shape)
 print(len(target))
 print("fit")
 
-pickle.dump(vectorizer, open("attempt2/vectorizer.pickle", "wb"))
+pickle.dump(vectorizer, open(f"{ATTEMPT}/vectorizer.pickle", "wb"))
 print("vectorizer save")
 
-sparse.save_npz("attempt2/vectorized_X", vectorized_X)
+sparse.save_npz(f"{ATTEMPT}/vectorized_X", vectorized_X)
 
-pickle.dump(target, open("attempt2/vectorized_y.pickle", "wb"))
+pickle.dump(target, open(f"{ATTEMPT}/vectorized_y.pickle", "wb"))
 
