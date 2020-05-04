@@ -69,14 +69,15 @@ print("1 hot")
 model = models.Sequential([
     layers.Dense(500, input_shape=(500,)),
     layers.Activation('relu'),
-    layers.Dense(4000),
+    layers.Dense(2048),
     layers.Activation('relu'),
-    layers.Dense(4000),
+    layers.Dense(2048),
     layers.Activation('relu'),
-    layers.Dense(4000),
+    layers.Dense(2048),
     layers.Activation('relu'),
-    layers.Dense(4000),
+    layers.Dense(2048),
     layers.Activation('relu'),
+    layers.Dense(2048),
     layers.Flatten(),
     layers.Dense(6),
     layers.Activation('softmax')
@@ -85,7 +86,7 @@ model.compile(optimizer='sgd',
               loss="binary_crossentropy",
               metrics=['accuracy'])
 
-model.fit(X, y_train_1hot, epochs=10, batch_size=256, verbose=True, validation_split=0.1)
+model.fit(X, y_train_1hot, epochs=10, batch_size=32, verbose=True, validation_split=0.1)
 model.save("model")
 
 # predict = model.predict(x_test)
