@@ -18,15 +18,16 @@ config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.compat.v1.InteractiveSession(config=config)
 
-X = np.memmap("vectorized_X.npy", dtype="uint16", mode="r", shape=(10000000, 500))
+#X = np.memmap("attempt2/vectorized_X.npy", dtype="uint16", mode="r", shape=(239651, 2000))
+X = np.load("attempt2/vectorized_X.npy")
 
 # X = sparse.load_npz("vectorized_X.npz")
 # X = X.toarray()
 
-y = pickle.load(open("vectorized_y.pickle", "rb"))
+y = pickle.load(open("attempt2/vectorized_y.pickle", "rb"))
 
 y = np.asarray(y)
-y = y.reshape((len(y), 1))[:10000000]
+y = y.reshape((len(y), 1))
 
 # scaler = preprocessing.StandardScaler()
 # X = scaler.fit_transform(X)
@@ -41,7 +42,7 @@ label_encoder.fit(y)
 
 print(label_encoder.classes_)
 
-pickle.dump(label_encoder, open("label_encoder.pickle", "wb"))
+pickle.dump(label_encoder, open("attempt2/label_encoder.pickle", "wb"))
 print("saved label encoder")
 
 y_numeric = label_encoder.transform(y)
@@ -52,8 +53,15 @@ print("transform label encoder")
 # del X
 # del y
 
-# x_test = x_val[len(x_val) // 2:]
-# y_test = y_val[len(y_val) // 2:]
+x_test = X[X.shape[0] - int(X.shape[0] * 0.1):]
+y_test = y_numeric[y.shape[0] - int(y.shape[0] * 0.1):]
+
+np.save("attempt2/x_test", x_test)
+np.save("attempt2/y_test", y_test)
+
+X = X[:X.shape[0] - int(X.shape[0] * 0.1)]
+y_numeric = y_numeric[:y.shape[0] - int(y.shape[0] * 0.1)]
+
 #
 # x_val = x_val[:len(x_val) // 2]
 # y_val = y_val[:len(y_val) // 2]
@@ -67,17 +75,18 @@ y_train_1hot = to_categorical(y_numeric)
 print("1 hot")
 
 model = models.Sequential([
-    layers.Dense(500, input_shape=(500,)),
+    layers.Dense(2000, input_shape=(2000,)),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(4096),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(4096),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(4096),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(4096),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(4096),
+    #layers.Dropout(0.6),
     layers.Flatten(),
     layers.Dense(6),
     layers.Activation('softmax')
@@ -86,12 +95,12 @@ model.compile(optimizer='sgd',
               loss="binary_crossentropy",
               metrics=['accuracy'])
 
-model.fit(X, y_train_1hot, epochs=10, batch_size=32, verbose=True, validation_split=0.1)
-model.save("model")
+model.fit(X, y_train_1hot, epochs=10, batch_size=64, verbose=True, validation_split=0.1)
+model.save("attempt2/model")
 
-# predict = model.predict(x_test)
-# predicted_classes = []
-# for prediction in predict:
-#     predicted_classes.append(np.argmax(prediction))
-#
-# print(classification_report(y_test, predicted_classes))
+predict = model.predict(x_test)
+predicted_classes = []
+for prediction in predict:
+    predicted_classes.append(np.argmax(prediction))
+
+print(classification_report(y_test, predicted_classes))

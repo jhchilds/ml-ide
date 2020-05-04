@@ -2,35 +2,21 @@ import pickle
 from tensorflow.keras import layers, optimizers, models
 import numpy as np
 
-vectorizer = pickle.load(open("vectorizer.pickle", "rb"))
+vectorizer = pickle.load(open("attempt2/vectorizer.pickle", "rb"))
 
 test = \
 """
-super.viewWillAppear(animated)
-    
-    var resourceFileDictionary: NSDictionary?
-    
-    //Load content of Info.plist into resourceFileDictionary dictionary
-    if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
-        resourceFileDictionary = NSDictionary(contentsOfFile: path)
-    }
-    
-    if let resourceFileDictionaryContent = resourceFileDictionary {
-        
-        // Get something from our Info.plist like MinimumOSVersion
-        print("MinimumOSVersion = \(resourceFileDictionaryContent.object(forKey: "MinimumOSVersion")!)")
-        
-        //Or we can print out entire Info.plist dictionary to preview its content
-        print(resourceFileDictionaryContent)
-        
-
+case e of
+  -> ValueE arg
+  -> ValueE (interp e)
+  _ -> Nothing
 """
 
 X = vectorizer.transform([test])
 
-label_encoder = pickle.load(open("label_encoder.pickle", "rb"))
+label_encoder = pickle.load(open("attempt2/label_encoder.pickle", "rb"))
 
-model = models.load_model("model")
+model = models.load_model("attempt2/model")
 predict = model.predict(X)
 print(predict)
 print(label_encoder.inverse_transform(range(6)))
