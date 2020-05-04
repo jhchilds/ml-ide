@@ -20,10 +20,11 @@ function sendCode() {
             code: codeMirror.getValue()
         },
         success: function (response) {
+            var mode = response.lang;
             CodeMirror.modeURL = "https://codemirror.net/2/mode/%N/%N.js";
-            codeMirror.setOption("mode", response.lang);
-            CodeMirror.autoLoadMode(codeMirror, response.lang);
-            console.log(response.lang)
+            codeMirror.setOption("mode", mode);
+            CodeMirror.autoLoadMode(codeMirror, mode);
+            console.log(mode)
         }
     });
 }
