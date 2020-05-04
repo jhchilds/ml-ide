@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 import logging
 import random
+from scipy import sparse
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s')
@@ -16,8 +17,8 @@ def get_labeled_source_of_type(type_):
     random.shuffle(paths)
     #paths = [("../repos-cloned/flask/src/flask/testing.py", "py")]
     print(len(paths))
-    if len(paths) > 100:
-        paths = paths[:100]
+    if len(paths) > 20000:
+        paths = paths[:20000]
     return paths
 
 
@@ -59,16 +60,14 @@ for file_tuple in file_paths:
     except:
         pass
 
-vectorizer = CountVectorizer(analyzer="char", ngram_range=(2, 4), lowercase=False, max_features=1000)
+vectorizer = CountVectorizer(analyzer="char", ngram_range=(2, 4), lowercase=False, max_features=500)
 vectorized_X = vectorizer.fit_transform(corpus)
 print("fit")
 
-pickle.dump(vectorized_X, open("vectorized_X.pickle", "wb"))
-
 pickle.dump(vectorizer, open("vectorizer.pickle", "wb"))
+print("vectorizer save")
 
-target = np.asarray(target)
-target = target.reshape((len(target), 1))
+sparse.save_npz("vectorized_X", vectorized_X)
 
-np.save("vectorized_y", target)
+pickle.dump(target, open("vectorized_y", "wb"))
 
