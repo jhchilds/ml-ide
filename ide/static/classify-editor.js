@@ -19,8 +19,12 @@ function sendCode() {
         data: {
             code: codeMirror.getValue()
         },
-        success: function (response){
-            console.log(response)
+        success: function (response) {
+            CodeMirror.modeURL = "https://codemirror.net/2/mode/%N/%N.js";
+            codeMirror.setOption("mode", response.lang);
+            CodeMirror.autoLoadMode(codeMirror, response.lang);
+            console.log(response.lang)
         }
     });
 }
+
