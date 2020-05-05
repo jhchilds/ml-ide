@@ -1,4 +1,4 @@
-var timeBetweenKeystrokes = 500;
+var timeBetweenKeystrokes = 200;
 var timer;
 var $editor = $('#firepad-container');
 
