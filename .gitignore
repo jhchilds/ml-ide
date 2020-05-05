@@ -10,3 +10,4 @@ data.json
 credentials.json
 nn/model
 *.pickle
+nn/attempt*

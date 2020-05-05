@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
+
 @app.route('/', methods=['GET','POST'])
 def index():
     return render_template('index.html')
@@ -13,6 +14,7 @@ def index():
 @app.route('/classify/', methods=['POST'])
 def classify():
     print(request.form["code"])
-    return json.dumps({'lang':'python'})
+    return json.dumps({'lang': 'hs'})
+
 
 socketio.run(app, host="0.0.0.0", log_output=True)
