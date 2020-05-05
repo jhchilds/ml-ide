@@ -9,14 +9,12 @@
     <meta name="author" content="Sam Clark, Josh Childs">
     {% endblock %}
 </head>
-
-
 {% block content %}
 {% block nav %}
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{{url_for('index')}}">
-        <img src="{{ url_for('static', filename='robot-logo.png') }}" width="30" height="30" class="d-inline-block align-top"
+        <img src="{{ url_for('static', filename='robot-logo.png') }}" width="30" height="30"
+             class="d-inline-block align-top"
              alt="">
         ML-IDE
     </a>
@@ -31,11 +29,6 @@
         </div>
     </div>
 </nav>
-
-
 {% endblock %}
-
 {% endblock %}
-
-
 </html>
