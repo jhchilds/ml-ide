@@ -4,12 +4,16 @@ import numpy as np
 
 ATTEMPT = "attempt3"
 
-vectorizer = pickle.load(open(f"{ATTEMPT}/vectorizer.pickle", "rb"))
+vectorizer = pickle.load(open(f"attempt3/vectorizer.pickle", "rb"))
 
 test = \
 """
-for i in range(10):
-    print(i)
+if myArray.count > 0 {
+    let sessionConfig = URLSessionConfiguration.default
+    let session = URLSession(configuration: sessionConfig)
+} else {
+    var x = 20;
+}
 """
 
 X = vectorizer.transform([test])

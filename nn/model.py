@@ -2,7 +2,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from sklearn.metrics import classification_report
 
-from tensorflow.keras import layers, optimizers, models
+from tensorflow.keras import layers, optimizers, models, regularizers
 from tensorflow.keras.utils import to_categorical
 import tensorflow as tf
 from tensorflow import keras
@@ -18,15 +18,16 @@ config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 session = tf.compat.v1.InteractiveSession(config=config)
 
-ATTEMPT = "attempt3"
+FROM_ATTEMPT = "attempt3"
+ATTEMPT = "attempt4"
 
 #X = np.memmap("attempt2/vectorized_X.npy", dtype="uint16", mode="r", shape=(239651, 2000))
-X = np.load(f"{ATTEMPT}/vectorized_X.npy")
+X = np.load(f"{FROM_ATTEMPT}/vectorized_X.npy")
 
 # X = sparse.load_npz("vectorized_X.npz")
 # X = X.toarray()
 
-y = pickle.load(open(f"{ATTEMPT}/vectorized_y.pickle", "rb"))
+y = pickle.load(open(f"{FROM_ATTEMPT}/vectorized_y.pickle", "rb"))
 
 y = np.asarray(y)
 y = y.reshape((len(y), 1))
@@ -71,41 +72,33 @@ print("1 hot")
 
 model = models.Sequential([
     layers.Dense(2000, input_shape=(2000,)),
+    layers.Activation('relu',),
+    layers.Dense(32),
     layers.Activation('relu'),
-    layers.Dense(2048),
+    layers.Dense(32),
     layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    layers.Activation('relu'),
-    layers.Dense(2048),
-    #layers.Dropout(0.6),
+    layers.Dense(32),
+    # layers.Activation('relu'),
+    # layers.Dense(256),
+    # layers.Activation('relu'),
+    # layers.Dense(512),
+    # layers.Activation('relu'),
+    # layers.Dense(512),
+    # layers.Activation('relu'),
+    # layers.Dense(512),
+    # layers.Dropout(0.5),
     layers.Flatten(),
     layers.Dense(6),
     layers.Activation('softmax')
 ])
+
+optimizer = optimizers.Adagrad(learning_rate=0.01)
+
 model.compile(optimizer='sgd',
               loss="binary_crossentropy",
               metrics=['accuracy'])
 
-fit = model.fit(x_train, y_train_1hot, epochs=10, batch_size=256, verbose=True, validation_data=(x_val, y_val_1hot))
+fit = model.fit(x_train, y_train_1hot, epochs=20, batch_size=64, verbose=True, validation_data=(x_val, y_val_1hot))
 
 model.save(f"{ATTEMPT}/model")
 pickle.dump(fit.history, open(f"{ATTEMPT}/history.pickle", "wb"))
-
-predict = model.predict(x_test)
-predicted_classes = []
-for prediction in predict:
-    predicted_classes.append(np.argmax(prediction))
-
-report = classification_report(y_test, predicted_classes)
-print(report)
-open(f"{ATTEMPT}/classification_report.txt", "w").write(report)
