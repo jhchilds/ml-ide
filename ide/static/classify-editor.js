@@ -4,7 +4,9 @@ var editor = $('#firepad-container');
 var currentLang;
 
 $( document ).ready(function() {
-    sendCode();
+    setTimeout(function() {
+        sendCode();
+    }, 1000);
 });
 
 editor.on('keydown', function () {
