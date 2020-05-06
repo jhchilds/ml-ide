@@ -1,12 +1,17 @@
 var timeBetweenKeystrokes = 200;
 var timer;
-var $editor = $('#firepad-container');
+var editor = $('#firepad-container');
+var currentLang;
 
-$editor.on('keydown', function () {
+$( document ).ready(function() {
+    sendCode();
+});
+
+editor.on('keydown', function () {
     clearTimeout(timer);
 });
 
-$editor.on('keyup', function () {
+editor.on('keyup', function () {
     clearTimeout(timer);
     timer = setTimeout(sendCode, timeBetweenKeystrokes);
 });
@@ -60,7 +65,8 @@ function sendCode() {
                 CodeMirror.modeURL = url;
                 codeMirror.setOption("mode", mime);
                 CodeMirror.autoLoadMode(codeMirror, mode);
-                console.log(response.lang)
+                console.log(response.lang);
+                currentLang = response.lang;
             } else {
                 console.log("unknown lang");
             }
