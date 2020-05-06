@@ -6,7 +6,7 @@ var currentLang;
 $( document ).ready(function() {
     setTimeout(function() {
         sendCode();
-    }, 1000);
+    }, 1500);
 });
 
 editor.on('keydown', function () {

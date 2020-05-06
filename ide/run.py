@@ -18,6 +18,9 @@ def run(code, lang):
     for param in _get_params(lang, filename):
         comps.append(subprocess.run(param, stdout=subprocess.PIPE, encoding="UTF-8"))
     output = comps[-1].stdout
-    os.remove(f"{dir_path}/output/a.out")
-    os.remove(filename)
+    aoutpath = f"{dir_path}/output/a.out"
+    if os.path.exists(aoutpath):
+        os.remove(aoutpath)
+    if os.path.exists(filename):
+        os.remove(filename)
     return output
