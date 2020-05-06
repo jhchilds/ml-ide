@@ -8,7 +8,8 @@ def _get_params(lang, filename):
     return {
         'py': [["python3.8", filename]],
         'c': [["gcc", filename, "-o", f"{dir_path}/output/a.out"], [f"{dir_path}/output/a.out"]],
-        'hs': [["stack", "runghc", filename]]
+        'hs': [["stack", "runghc", filename]],
+        'js': [["node", filename]]
     }.get(lang)
 
 
