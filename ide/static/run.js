@@ -1,5 +1,4 @@
 function runCode() {
-    console.log("RUN.JS: " + currentLang);
     $.ajax({
         type: "POST",
         url: "/run",

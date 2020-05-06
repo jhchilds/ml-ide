@@ -22,7 +22,6 @@ def classify():
 @app.route('/run', methods=['POST'])
 def run_code():
     code = request.form["code"]
-    print ("DEBUG:", request.form)
     lang = request.form["lang"]
     return json.dumps({"output" : run(code, lang)})
 
