@@ -9,6 +9,7 @@ function runCode() {
         },
         success: function (response) {
             console.log(response.output);
+            console.log(response.errors);
         }
     });
 }

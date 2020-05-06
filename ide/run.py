@@ -19,11 +19,14 @@ def run(code, lang):
     f = open(filename, "w").write(code)
     comps = []
     for param in _get_params(lang, filename):
-        comps.append(subprocess.run(param, stdout=subprocess.PIPE, encoding="UTF-8"))
-    output = comps[-1].stdout
+        comps.append(subprocess.run(param, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="UTF-8"))
+    response = {
+        "output": comps[-1].stdout,
+        "errors": comps[-1].stderr
+    }
     aoutpath = f"{dir_path}/output/a.out"
     if os.path.exists(aoutpath):
         os.remove(aoutpath)
     if os.path.exists(filename):
         os.remove(filename)
-    return output
+    return response

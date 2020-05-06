@@ -24,7 +24,7 @@ def classify():
 def run_code():
     code = request.form["code"]
     lang = request.form["lang"]
-    return json.dumps({"output" : run(code, lang)})
+    return json.dumps(run(code, lang))
 
 
 socketio.run(app, host="0.0.0.0", log_output=True, debug=True)
