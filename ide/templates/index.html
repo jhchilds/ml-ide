@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css"/>
     <link rel="stylesheet" href="https://firepad.io/releases/v1.5.9/firepad.css"/>
     <script src="https://firepad.io/releases/v1.5.9/firepad.min.js"></script>
@@ -56,11 +57,14 @@
             </div>
         </div>
 
+        <div id="classify-visualizer"></div>
+
 
 
     {% endblock %}
     <script src="../static/firepad-init.js"></script>
     <script src="../static/loadmode.js"></script>
+    <script src="../static/classify-visulizer.js"></script>
     <script src="../static/classify-editor.js"></script>
     <script src="../static/run.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

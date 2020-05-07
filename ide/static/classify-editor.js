@@ -94,6 +94,7 @@ function sendCode() {
                 console.log(response.lang);
                 currentLang = response.lang;
                 $("#predict-option").text("Predict (" + response.lang + ")");
+                classifyVisualizer(response)
             } else {
                 console.log("unknown lang");
             }
