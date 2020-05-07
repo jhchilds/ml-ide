@@ -11,6 +11,7 @@ $(".output-box").hide();
 $(document).ready(function () {
     setTimeout(function () {
         sendCode();
+        initVisualizer();
     }, 1500);
 });
 
