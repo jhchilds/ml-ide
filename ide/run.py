@@ -20,7 +20,9 @@ def run(code, lang):
         filename = _get_java_template(code)
     else:
         filename = f"{dir_path}/output/editor_code.{lang}"
-        f = open(filename, "w").write(code)
+        f = open(filename, "w")
+        f.write(code)
+        f.flush()
     comps = []
     for param in _get_params(lang, filename):
         comps.append(subprocess.run(param, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="UTF-8"))

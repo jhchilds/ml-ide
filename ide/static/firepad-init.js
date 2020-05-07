@@ -2,7 +2,8 @@
 var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
         lineNumbers: true,
         mode: 'javascript',
-        theme: 'darcula'
+        theme: 'darcula',
+        viewportMargin: Infinity
     });
 
 function init() {
