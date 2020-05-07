@@ -35,7 +35,7 @@ function initVisualizer() {
     var data = [
         {
             x: ['c', 'hs', 'java', 'js', 'py', 'swift'],
-            y: [0.1,0.1,0.1,0.1,0.1,0.1],
+            y: [1, 1, 1, 1, 1, 1],
             type: 'bar'
         }
     ];
