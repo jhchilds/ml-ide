@@ -6,6 +6,8 @@ var currentLang;
 var stdout = undefined;
 var stderr = undefined;
 
+$(".output-box").hide();
+
 $(document).ready(function () {
     setTimeout(function () {
         sendCode();
@@ -21,17 +23,20 @@ editor.on('keyup', function () {
     timer = setTimeout(sendCode, timeBetweenKeystrokes);
 });
 
-$("#run-button").on("click", function () {
+$("#run-button").on("click", function (event) {
+    event.preventDefault();
     runCode();
 });
 
-$("#show-stdout").on("click", function () {
+$("#show-stdout").on("click", function (event) {
+    event.preventDefault();
     if (stdout !== undefined) {
         $("#program-output").hide().html(stdout).slideDown();
     }
 });
 
-$("#show-stderr").on("click", function () {
+$("#show-stderr").on("click", function (event) {
+    event.preventDefault();
     if (stderr !== undefined) {
         $("#program-output").hide().html(stderr).slideDown();
     }
