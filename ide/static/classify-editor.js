@@ -3,8 +3,11 @@ var timer;
 var editor = $('#firepad-container');
 var currentLang;
 
-$( document ).ready(function() {
-    setTimeout(function() {
+var stdout = undefined;
+var stderr = undefined;
+
+$(document).ready(function () {
+    setTimeout(function () {
         sendCode();
     }, 1500);
 });
@@ -16,6 +19,22 @@ editor.on('keydown', function () {
 editor.on('keyup', function () {
     clearTimeout(timer);
     timer = setTimeout(sendCode, timeBetweenKeystrokes);
+});
+
+$("#run-button").on("click", function () {
+    runCode();
+});
+
+$("#show-stdout").on("click", function () {
+    if (stdout !== undefined) {
+        $("#program-output").hide().html(stdout).slideDown();
+    }
+});
+
+$("#show-stderr").on("click", function () {
+    if (stderr !== undefined) {
+        $("#program-output").hide().html(stderr).slideDown();
+    }
 });
 
 function sendCode() {
@@ -69,6 +88,7 @@ function sendCode() {
                 CodeMirror.autoLoadMode(codeMirror, mode);
                 console.log(response.lang);
                 currentLang = response.lang;
+                $("#predict-option").text("Predict (" + response.lang + ")");
             } else {
                 console.log("unknown lang");
             }

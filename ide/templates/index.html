@@ -28,8 +28,8 @@
                 <nav class="navbar navbar-expand-sm">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
-                            <select class="form-control">
-                                <option value="predict">Predict</option>
+                            <select class="form-control" id="selected-language">
+                                <option value="predict" id="predict-option">Predict</option>
                                 <option value="py">Python</option>
                                 <option value="c">C</option>
                                 <option value="swift">Swift</option>
@@ -39,14 +39,20 @@
                             </select>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-info ml-3" href="#">Run</a>
+                            <a class="btn btn-info ml-3" href="#/" id="run-button">Run</a>
+                        </li>
+                        <li class="nav-item ml-5">
+                            <button class="btn btn-light" href="#/" id="show-stdout">Result</button>
+                        </li>
+                        <li class="nav-item ml-1">
+                            <button class="btn btn-light" href="#/" id="show-stderr">Errors</button>
                         </li>
                     </ul>
-                    <button class="btn btn-danger"><i class="fa fa-close"></i></button>
+{#                    <button class="btn btn-danger"><i class="fa fa-close"></i></button>#}
                 </nav>
+                <pre class="text-light" id="program-output"></pre>
             </div>
         </div>
-
 
 
 
