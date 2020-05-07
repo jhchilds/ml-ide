@@ -26,6 +26,8 @@ function init() {
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
         defaultText: 'Welcome to ML-IDE'
     });
+
+    $(".powered-by-firepad").hide();
 }
 
 function getExampleRef() {
