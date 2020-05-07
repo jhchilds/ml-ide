@@ -15,9 +15,15 @@ def predict(text):
     X = vectorizer.transform([text])
     predictions = model.predict(X)
 
-    predicted_classes = []
+    labeled_predictions = dict()
+    predicted_class = []
     for prediction in predictions:
-        predicted_classes.append(np.argmax(prediction))
+        predicted_class.append(np.argmax(prediction))
+        class_labels = label_encoder.inverse_transform(np.argwhere(prediction))
+    for i in range(len(class_labels)):
+       labeled_predictions[class_labels[i]] = str(predictions[0][i])
+    pred_class_label = label_encoder.inverse_transform(predicted_class)
+    labeled_predictions['lang'] = pred_class_label[0]
+    print(labeled_predictions)
 
-    class_labels = label_encoder.inverse_transform(predicted_classes)
-    return class_labels[0]
+    return labeled_predictions

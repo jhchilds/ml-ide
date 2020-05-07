@@ -17,7 +17,7 @@ def index():
 @app.route('/classify', methods=['POST'])
 def classify():
     text = request.form["code"]
-    return json.dumps({'lang': predict(text)})
+    return json.dumps(predict(text))
 
 
 @app.route('/run', methods=['POST'])
