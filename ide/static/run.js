@@ -8,8 +8,18 @@ function runCode() {
             lang: currentLang
         },
         success: function (response) {
-            console.log(response.output);
-            console.log(response.errors);
+
+
+            var out = "";
+            if (response.output === ""){
+                out = response.errors;
+                console.log(response.errors);
+            }
+            else{
+                out = response.output;
+                console.log(response.output);
+            }
+            document.getElementById("output-box").innerText = out
         }
     });
 }
