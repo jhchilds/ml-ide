@@ -7,11 +7,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/mode/javascript/javascript.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css"/>
     <link rel="stylesheet" href="https://firepad.io/releases/v1.5.9/firepad.css"/>
-    <link rel="stylesheet" href="../static/custom.css"/>
     <script src="https://firepad.io/releases/v1.5.9/firepad.min.js"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='robot-logo-fav.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/custom.css"/>
 {% endblock %}
 
 {% block body %}
@@ -20,7 +20,7 @@
         {{ super() }}
 
 
-        <div class="jumbotron jumbotron-fluid" style="height: 500px">
+        <div class="jumbotron jumbotron-fluid">
             <div id="firepad-container"></div>
         </div>
 
