@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='robot-logo-fav.png') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/custom.css"/>
     <link rel="stylesheet" href="https://codemirror.net/theme/darcula.css"/>
 {% endblock %}
@@ -21,11 +22,29 @@
         {{ super() }}
 
 
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron editor-container">
             <div id="firepad-container"></div>
-        </div>
-        <div id="output-box" class="jumbotron bg-dark jumbotron-fluid">
-
+            <div class="editor-panel">
+                <nav class="navbar navbar-expand-sm">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <select class="form-control">
+                                <option value="predict">Predict</option>
+                                <option value="py">Python</option>
+                                <option value="c">C</option>
+                                <option value="swift">Swift</option>
+                                <option value="hs">Haskell</option>
+                                <option value="js">JavaScript</option>
+                                <option value="java">Java</option>
+                            </select>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-info ml-3" href="#">Run</a>
+                        </li>
+                    </ul>
+                    <button class="btn btn-danger"><i class="fa fa-close"></i></button>
+                </nav>
+            </div>
         </div>
 
 

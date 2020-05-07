@@ -11,21 +11,30 @@ body {
 /* Height / width / positioning can be customized for your use case.
    For demo purposes, we make firepad fill the entire browser. */
 #firepad-container, .firepad {
-    border: 1px solid black;
     height: auto;
 }
 
 
 .jumbotron {
-    padding: 0;
-    /*height: 400px;*/
     flex-direction: column;
     margin-bottom: 0;
 }
 
+.editor-container {
+    background-color: inherit;
+}
+
+.editor-panel {
+    background-color: #2B2B2B;
+    padding: 20px;
+    margin: auto;
+}
+
 .CodeMirror {
-    border: 1px solid #eee;
     height: auto;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0 ;
 }
 
 .firepad .CodeMirror {
