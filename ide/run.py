@@ -12,7 +12,7 @@ def _get_params(lang, filename):
         'hs': [["stack", "runghc", filename]],
         'js': [["node", filename]],
         'java': [["javac", filename], ["java", "-cp", f"{dir_path}/output", "Main"]]
-    }.get(lang) 
+    }.get(lang)
 
 
 def run(code, lang):
@@ -29,11 +29,13 @@ def run(code, lang):
         "errors": comps[-1].stderr
     }
     aoutpath = f"{dir_path}/output/a.out"
-    if os.path.exists(aoutpath):
-        os.remove(aoutpath)
-    # if os.path.exists(filename):
-        # os.remove(filename)
+    java_class_path = f"{dir_path}/output/Main.class"
+    file_list = [filename, aoutpath, java_class_path]
+    for file in file_list:
+        if os.path.exists(file):
+            os.remove(file)
     return response
+
 
 def _get_java_template(code):
     filename = f"{dir_path}/output/Main.java"
