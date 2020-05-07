@@ -10,13 +10,17 @@ def _get_params(lang, filename):
         'c': [["gcc", filename, "-o", f"{dir_path}/output/a.out"], [f"{dir_path}/output/a.out"]],
         'swift': [["swiftc", filename, "-o", f"{dir_path}/output/a.out"], [f"{dir_path}/output/a.out"]],
         'hs': [["stack", "runghc", filename]],
-        'js': [["node", filename]]
+        'js': [["node", filename]],
+        'java': [["javac", filename], ["java", "-cp", f"{dir_path}/output", "Main"]]
     }.get(lang) 
 
 
 def run(code, lang):
-    filename = f"{dir_path}/output/editor_code.{lang}"
-    f = open(filename, "w").write(code)
+    if lang == 'java':
+        filename = _get_java_template(code)
+    else:
+        filename = f"{dir_path}/output/editor_code.{lang}"
+        f = open(filename, "w").write(code)
     comps = []
     for param in _get_params(lang, filename):
         comps.append(subprocess.run(param, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="UTF-8"))
@@ -27,6 +31,12 @@ def run(code, lang):
     aoutpath = f"{dir_path}/output/a.out"
     if os.path.exists(aoutpath):
         os.remove(aoutpath)
-    if os.path.exists(filename):
-        os.remove(filename)
+    # if os.path.exists(filename):
+        # os.remove(filename)
     return response
+
+def _get_java_template(code):
+    filename = f"{dir_path}/output/Main.java"
+    f = open(filename, "w")
+    f.write("public class Main {" + code + "}")
+    return filename
